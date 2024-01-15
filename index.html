@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    
+  
+      <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+  
+      <meta name="apple-mobile-web-app-title" content="CodePen">
+  
+      <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+  
+      <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+  
+      <link href="https://cdn.jsdelivr.net/npm/apexcharts@latest/dist/apexcharts.css" rel="stylesheet">
+
+      <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-treemap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/datamaps.none.js"></script>
+
+    <!-- Styles -->
+    <style type="text/css">
+        .container-fluid {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        #treemap {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+
+  
+  
+      <link rel="canonical" href="https://codepen.io/Md-Hedayet-Ullah/pen/OJqJWqo">
+    
+    
+    
+    
+  <style>
+  /* Webpixels CSS */
+  /* Utility and component-centric Design System based on Bootstrap for fast, responsive UI development */
+  /* URL: https://github.com/webpixels/css */
+  
+  @import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
+  
+  /* Bootstrap Icons */
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+  </style>
+  
+    <script>
+    window.console = window.console || function(t) {};
+    
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    
+  </head>
+  
+  <body translate="no" class="vsc-initialized">
+  
+  <!-- Dashboard -->
+  <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+      <!-- Vertical Navbar -->
+      <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
+          <div class="container-fluid">
+              <!-- Toggler -->
+              <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <!-- Brand -->
+              <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/EY_logo_2019.svg/1200px-EY_logo_2019.svg.png" alt="...">
+              </a>
+              <!-- User menu (mobile) -->
+              <div class="navbar-user d-lg-none">
+                  <!-- Dropdown -->
+                  <div class="dropdown">
+                      <!-- Toggle -->
+                      <a href="#" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <div class="avatar-parent-child">
+                              <img alt="Image Placeholder" src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=256&amp;h=256&amp;q=80" class="avatar avatar- rounded-circle">
+                              <span class="avatar-child avatar-badge bg-success"></span>
+                          </div>
+                      </a>
+                      <!-- Menu -->
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sidebarAvatar">
+                          <a href="#" class="dropdown-item">Profile</a>
+                          <a href="#" class="dropdown-item">Settings</a>
+                          <a href="#" class="dropdown-item">Billing</a>
+                          <hr class="dropdown-divider">
+                          <a href="#" class="dropdown-item">Logout</a>
+                      </div>
+                  </div>
+              </div>
+              <!-- Collapse -->
+              <div class="collapse navbar-collapse" id="sidebarCollapse">
+                  <!-- Navigation -->
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="bi bi-house-door"></i> Dashboard
+                        </a>
+                    </li>
+           
+                    <li class="nav-item">
+                        <a class="nav-link" href="/IM_products">
+                            <i class="bi bi-calendar-check"></i> Track Employees
+                        </a>
+                    </li>
+            
+                </ul>
+                
+                 
+                  <!-- Push content down -->
+                  <div class="mt-auto"></div>
+                  <!-- User (md) -->
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">
+                              <i class="bi bi-person-square"></i> Account
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">
+                              <i class="bi bi-box-arrow-left"></i> Logout
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+      <!-- Main content -->
+      <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+          <!-- Header -->
+          <header class="bg-surface-primary border-bottom pt-6">
+              <div class="container-fluid">
+                  <div class="mb-npx">
+                      <div class="row align-items-center">
+                          <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                              <!-- Title -->
+                              <h1 class="h2 mb-0 ls-tight">Om Ganesh Dry Cleaners</h1>
+                          </div>
+                          
+                  </div>
+              </div>
+          </header>
+          <!-- Main -->
+          <main class="py-6 bg-surface-secondary">
+              <div class="container-fluid">
+                  <!-- Laundry Business Metrics Cards -->
+<div class="row g-6 mb-6">
+    <!-- Total Orders Card -->
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card shadow border-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Orders</span>
+                        <span class="h3 font-bold mb-0">7587</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                            <i class="bi bi-basket"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 mb-0 text-sm">
+                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                        <i class="bi bi-arrow-up me-1"></i>13%
+                    </span>
+                    <span class="text-nowrap text-xs text-muted">Since last month</span>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Revenue Card -->
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card shadow border-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Revenue</span>
+                        <span class="h3 font-bold mb-0">₹75,348</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                            <i class="bi bi-cash"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 mb-0 text-sm">
+                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                        <i class="bi bi-arrow-up me-1"></i>30%
+                    </span>
+                    <span class="text-nowrap text-xs text-muted">Since last month</span>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Average Order Value Card -->
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card shadow border-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Number of Customers</span>
+                        <span class="h3 font-bold mb-0">1499</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+                            <i class="bi bi-person-square"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 mb-0 text-sm">
+                    <span class="badge badge-pill bg-soft-danger text-danger me-2">
+                        <i class="bi bi-arrow-down me-1"></i>-5%
+                    </span>
+                    <span class="text-nowrap text-xs text-muted">Since last month</span>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Satisfaction Card -->
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card shadow border-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Customer Satisfaction</span>
+                        <span class="h3 font-bold mb-0">92%</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                            <i class="bi bi-emoji-smile"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2 mb-0 text-sm">
+                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                        <i class="bi bi-arrow-up me-1"></i>5%
+                    </span>
+                    <span class="text-nowrap text-xs text-muted">Since last month</span>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+
+<!-- Single Long Bar Chart Card with Inline Styles -->
+<div style="margin-bottom: 16px; width: 100%;">
+    <div style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border: 0; border-radius: 8px; overflow: hidden;">
+        <div style="padding: 20px;">
+            <span style="font-size: 16px; font-weight: 600; color: #6c757d; display: block; margin-bottom: 10px;">Clothing Sales vs Forecast</span>
+            <canvas id="forecastChart" style="height: 400px; width: 100%;"></canvas>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <!-- First Row: Bar Chart and Pie Chart -->
+    <div class="row">
+        <!-- Bar Chart Card -->
+        <div class="col-xl-6 mb-4">
+            <div class="card shadow border-0">
+                <div class="card-body">
+                    <span class="h6 font-semibold text-muted text-sm d-block mb-3">Monthly Sales</span>
+                    <div id="barChart" style="height: 420px;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Pie Chart Card -->
+        <div class="col-xl-6 mb-4">
+            <div class="card shadow border-0">
+                <div class="card-body">
+                    <span class="h6 font-semibold text-muted text-sm d-block mb-3">Distribution Across Services</span>
+                    <div id="pieChart" style="height: 420px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+   
+    <script>
+        // Sample data for Total Sales and Trend
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var totalSalesData = [100, 120, 150, 80, 200, 180, 220, 250, 170, 130, 160, 190];
+        var trendData = [95, 105, 135, 75, 190, 170, 210, 240, 160, 125, 155, 185];
+    
+        var ctx = document.getElementById('forecastChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Total Sales',
+                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    data: totalSalesData
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    
+        // Add line chart for trend
+        var trendDataset = {
+            label: 'Trend',
+            borderColor: 'rgba(255, 206, 86, 1)',
+            borderWidth: 2,
+            type: 'line',
+            data: trendData,
+            yAxisID: 'trend-y-axis'
+        };
+    
+        myChart.data.datasets.push(trendDataset);
+        myChart.update();
+    </script>
+    
+
+</div>
+
+
+
+<!-- JavaScript Code -->
+<script>
+
+
+var actualSalesData = [
+            5320, 2230, 4250, 4540, 8700, 2230, 2030, 1400,12000, 2400, 3450, 4554, 3220, 8970, 1231, 3453,
+            5000, 7000, 4500, 4500, 2900, 235, 3245, 324,7476, 1233, 2345, 3455, 3445, 9879, 5678, 5544,
+            // ... add data for other clothing types
+        ];
+
+        var clothingTypes = [
+            "SHIRT", "PANT", "JEANS PANT", "WHITE KURTA GENTS", "WHITE PAYJAMA", "JACKET", "GENTS KURTA COLOR",
+            "TOP (Regular)", "TOP (Long)", "SALWAR", "DUPATTA", "GHAGRA", "SAREE", "BLOUSE", "SHAAL",
+            "COAT/BLAZER", "SHERWANI", "SOLAPURI CHADAR", "BLANKET", "CURTAIN", "SWEATER", "WINTER JACKET",
+            "SHOES", "CARPET"
+        ];
+
+        var barOptions = {
+            series: [{
+                name: 'Actual Sales',
+                data: actualSalesData
+            }],
+            chart: {
+                type: 'bar',
+                height: 400, // Adjusted chart height
+                width: 450   // Adjusted chart width
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    dataLabels: {
+                        position: 'top'
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                offsetX: -6,
+                style: {
+                    fontSize: '10px', // Adjusted font size
+                    colors: ['#fff']
+                }
+            },
+            stroke: {
+                show: true,
+                width: 1,
+                colors: ['#fff']
+            },
+            xaxis: {
+                categories: clothingTypes
+            },
+            yaxis: {
+                title: {
+                    text: 'Clothing Categories'
+                }
+            },
+            legend: {
+                position: 'top'
+            },
+            colors: ['#4680ff']
+        };
+
+        var barChart = new ApexCharts(document.querySelector("#barChart"), barOptions);
+        barChart.render();
+
+    // Sample data for cleaning type distribution
+    var cleaningTypeDistribution = {
+            series: [200, 150, 250, 300, 100], // You can replace this with your actual data
+            chart: {
+                width: 480,
+                type: 'pie',
+                offsetX: 50, // Adjust for space
+            },
+            labels: ['Press', 'Roll Press', 'Steam Press', 'Dry Clean', 'Color'],
+            colors: ['#4680ff', '#0acf97', '#ffbb44', '#ff8447', '#4ac4ec'], // Different colors
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 400
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+
+        var pieChart = new ApexCharts(document.querySelector("#pieChart"), cleaningTypeDistribution);
+        pieChart.render();
+        
+    var bubble_map = new Datamap({
+        element: document.getElementById('india'),
+        scope: 'india',
+        geographyConfig: {
+            popupOnHover: false,
+            highlightOnHover: false,
+            borderColor: '#000',
+            borderWidth: 0.5,
+            dataUrl: 'https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json'
+        },
+        fills: {
+            'HIGH_SALES': '#1E88E5',  // Light blue for bubbles
+            'HIGH_SALES_HOVER': '#0D47A1' ,
+            defaultFill: '#FFFFFF'
+        },
+        setProjection: function (element) {
+            var projection = d3.geo.mercator()
+                .center([90.9629, 23.5937])
+                .scale(1000);
+            var path = d3.geo.path().projection(projection);
+            return { path: path, projection: projection };
+        }
+    });
+
+    let bubbles = [
+        { centered: "MH", fillKey: "HIGH_SALES", radius: 23, state: "Maharashtra", sales: 5000 },
+        { centered: "AP", fillKey: "HIGH_SALES", radius: 12, state: "Andhra Pradesh", sales: 4800 },
+        { centered: "TN", fillKey: "HIGH_SALES", radius: 27, state: "Tamil Nadu", sales: 4600 },
+        { centered: "WB", fillKey: "HIGH_SALES", radius: 15, state: "West Bengal", sales: 4300 },
+        { centered: "MP", fillKey: "HIGH_SALES", radius: 19, state: "Madhya Pradesh", sales: 4100 },
+        { centered: "UP", fillKey: "HIGH_SALES", radius: 25, state: "Uttar Pradesh", sales: 3900 },
+        { centered: "RJ", fillKey: "HIGH_SALES", radius: 20, state: "Rajasthan", sales: 3700 },
+        { centered: "GJ", fillKey: "HIGH_SALES", radius: 30, state: "Gujarat", sales: 4600 },
+        { centered: "KA", fillKey: "HIGH_SALES", radius: 38, state: "Karnataka", sales: 4300 },
+        { centered: "KL", fillKey: "HIGH_SALES", radius: 12, state: "Kerala", sales: 4000 },
+        { centered: "PB", fillKey: "HIGH_SALES", radius: 8, state: "Punjab", sales: 4200 },
+        { centered: "HR", fillKey: "HIGH_SALES", radius: 29, state: "Haryana", sales: 4100 },
+        { centered: "BR", fillKey: "HIGH_SALES", radius: 27, state: "Bihar", sales: 3900 }
+    ];
+
+    setTimeout(() => {
+        bubble_map.bubbles(bubbles, {
+            popupTemplate: function (geo, data) {
+                return `<div class="hoverinfo">State: ${data.state}, Sales: ${data.sales}</div>`;
+            },
+            fillOpacity: 0.7,  // Adjust opacity for better visual effect
+            highlightOnHover: true,
+            highlightFillColor: '#0D47A1',  // Dark blue on hover
+            highlightBorderColor: '#FFFFFF'  // White border on hover
+        });
+    }, 1000);
+</script>
+
+
+
+          </main>
+      </div>
+  </div>
+    
+    
+    
+  
+  
+  
+  </body></html>

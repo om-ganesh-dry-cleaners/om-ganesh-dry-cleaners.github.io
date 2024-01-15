@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    
+  
+      <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+  
+      <meta name="apple-mobile-web-app-title" content="CodePen">
+  
+      <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+  
+      <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+  
+      <link href="https://cdn.jsdelivr.net/npm/apexcharts@latest/dist/apexcharts.css" rel="stylesheet">
+
+      <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-treemap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/datamaps.none.js"></script>
+
+    <!-- Styles -->
+    <style type="text/css">
+        .container-fluid {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        #treemap {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+
+  
+  
+      <link rel="canonical" href="https://codepen.io/Md-Hedayet-Ullah/pen/OJqJWqo">
+    
+    
+    
+    
+  <style>
+  /* Webpixels CSS */
+  /* Utility and component-centric Design System based on Bootstrap for fast, responsive UI development */
+  /* URL: https://github.com/webpixels/css */
+  
+  @import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
+  
+  /* Bootstrap Icons */
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+  </style>
+  
+    <script>
+    window.console = window.console || function(t) {};
+    
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js"></script>
+
+    
+  </head>
+  
+  <body translate="no" class="vsc-initialized">
+  
+  <!-- Dashboard -->
+  <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+      <!-- Vertical Navbar -->
+      <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
+          <div class="container-fluid">
+              <!-- Toggler -->
+              <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <!-- Brand -->
+              <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/EY_logo_2019.svg/1200px-EY_logo_2019.svg.png" alt="...">
+              </a>
+              <!-- User menu (mobile) -->
+              <div class="navbar-user d-lg-none">
+                  <!-- Dropdown -->
+                  <div class="dropdown">
+                      <!-- Toggle -->
+                      <a href="#" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <div class="avatar-parent-child">
+                              <img alt="Image Placeholder" src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=256&amp;h=256&amp;q=80" class="avatar avatar- rounded-circle">
+                              <span class="avatar-child avatar-badge bg-success"></span>
+                          </div>
+                      </a>
+                      <!-- Menu -->
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sidebarAvatar">
+                          <a href="#" class="dropdown-item">Profile</a>
+                          <a href="#" class="dropdown-item">Settings</a>
+                          <a href="#" class="dropdown-item">Billing</a>
+                          <hr class="dropdown-divider">
+                          <a href="#" class="dropdown-item">Logout</a>
+                      </div>
+                  </div>
+              </div>
+              <!-- Collapse -->
+              <div class="collapse navbar-collapse" id="sidebarCollapse">
+                  <!-- Navigation -->
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="bi bi-house-door"></i> Dashboard
+                        </a>
+                    </li>
+           
+                    <li class="nav-item">
+                        <a class="nav-link" href="/IM_products">
+                            <i class="bi bi-calendar-check"></i> Track Employees
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/IM_products">
+                            <i class="bi bi-person-square"></i> Employees
+                        </a>
+                    </li>
+
+                </ul>
+                
+                 
+                  <!-- Push content down -->
+                  <div class="mt-auto"></div>
+                  <!-- User (md) -->
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">
+                              <i class="bi bi-person-square"></i> Account
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">
+                              <i class="bi bi-box-arrow-left"></i> Logout
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+      <!-- Main content -->
+      <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+          <!-- Header -->
+          <header class="bg-surface-primary border-bottom pt-6">
+              <div class="container-fluid">
+                  <div class="mb-npx">
+                      <div class="row align-items-center">
+                          <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                              <!-- Title -->
+                              <h1 class="h2 mb-0 ls-tight">Om Ganesh Dry Cleaners</h1>
+                          </div>
+                          
+                  </div>
+              </div>
+          </header>
+          <!-- Main -->
+          <main class="py-6 bg-surface-secondary">
+              <div class="container-fluid">
+
+                <div class="employee-container" id="employeeContainer">
+                    <!-- Employee cards will be dynamically added here -->
+                  </div>
+
+                  <style>
+
+.employee-container {
+  margin-top:80px;
+}
+/* Your existing CSS styles here */
+
+.employee {
+  width: 80%; /* Adjust the width as needed */
+  background-color: black;
+  margin: 10px auto;
+  display: block;
+  overflow: hidden;
+  height: 200px; /* Adjust the height as needed */
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 31px -19px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 31px -19px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 31px -19px rgba(0, 0, 0, 0.75);
+}
+.employee-details {
+  height: 10px; /* Adjust the height as needed */
+}
+
+.employee:hover > .employee-image {
+  margin-top: -10px;
+}
+
+.employee-image {
+  background-color: #fff;
+  height: 150px; /* Adjust the height as needed */
+  width: 100%;
+  transition: 0.5s;
+}
+
+.employee-image img {
+  height: 100%;
+}
+/* Your existing CSS styles here */
+
+.employee-name {
+  color: #fff;
+  font-weight: bold;
+  padding: 5px;
+  height: 60px; /* Adjust the height as needed */
+}
+
+.employee-name h1 {
+  font-size: 18px; /* Adjust the font size as needed */
+  margin: 0;
+  color: #fff;
+}
+
+.employee-name span {
+  font-size: 14px; /* Adjust the font size as needed */
+  color: yellow;
+  padding: 0px;
+}
+
+.employee:hover > .employee-details {
+  bottom:50px;
+}
+
+
+                  </style>
+                  
+                  <div class="employee-container" id="employeeContainer">
+                    <!-- Employee cards will be dynamically added here -->
+                  </div>
+
+                  
+                  
+                  <script>
+                 document.addEventListener('DOMContentLoaded', function () {
+        // Fetch data from Firebase
+        fetch('https://apparel-tracking-system-default-rtdb.firebaseio.com/.json')
+            .then(response => response.json())
+            .then(data => {
+                // Access the "authenticate" and "users" data
+                const authenticateData = data.authenticate;
+                const usersData = data.users;
+
+                // Get the employee container
+                const employeeContainer = document.getElementById('employeeContainer');
+
+                // Loop through each employee in the authenticate data
+                for (const [username, employeeData] of Object.entries(authenticateData)) {
+                    // Create a new employee card
+                    const employeeCard = document.createElement('div');
+                    employeeCard.className = 'col-lg-4 employee-1';
+
+                    // Set the employee details
+                    employeeCard.innerHTML = `
+                        <div class="employee">
+                            <div class="employee-image">
+                                <img src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" class="img-fluid d-block m-auto" alt="employee-image">
+                            </div>
+                            <div class="employee-details">
+                                <div class="employee-name">
+                                    <h1 class="text-center">${employeeData.name}</span></h1>
+                                </div>
+                          
+                            </div>
+                        </div>
+                    `;
+
+                     // Add click event listener to each employee card
+                    employeeCard.addEventListener('click', () => {
+                        // Check if the user exists in the "users" data
+                        const formattedUsername = username.replace('_', ' ');
+                        const userData = usersData[formattedUsername];
+
+                        // Redirect to data.html and pass JSON data as a query parameter
+                        window.location.href = `data.html?userData=${encodeURIComponent(JSON.stringify(userData))}`;
+                    });
+
+                    // Append the card to the employee container
+                    employeeContainer.appendChild(employeeCard);
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+                  </script>
+        
+          </main>
+      </div>
+  </div>
+    
+    
+    
+  
+  
+  
+  </body></html>

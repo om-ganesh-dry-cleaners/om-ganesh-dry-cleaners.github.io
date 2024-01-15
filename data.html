@@ -1,0 +1,78 @@
+<!-- data.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data</title>
+    <style>
+        /* Your CSS styles for data.html here */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .total {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Parse the query parameter to get JSON data
+        const urlParams = new URLSearchParams(window.location.search);
+        const userDataParam = urlParams.get('userData');
+        const userData = JSON.parse(decodeURIComponent(userDataParam));
+
+        // Display user data in table format
+        displayUserData(userData);
+
+        function displayUserData(userData) {
+            const table = document.createElement('table');
+            let total = 0;
+
+            // Create table header
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = '<th>Clothing Type</th><th>Customer Name</th><th>Price</th><th>Service</th>';
+            table.appendChild(headerRow);
+
+            // Create table rows
+            for (const [uid, barcodeData] of Object.entries(userData)) {
+                const { "Clothing Type": clothingType, "Customer Name": customerName, Price, Service } = barcodeData.barcode_data;
+
+                // Update total price
+                total += parseFloat(Price);
+
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${clothingType}</td><td>${customerName}</td><td>${Price}</td><td>${Service}</td>`;
+                table.appendChild(row);
+            }
+
+            // Display total price and row count
+            const totalRow = document.createElement('div');
+            totalRow.className = 'total';
+            totalRow.innerHTML = `<p>Total Price: ${total.toFixed(2)}</p><p>Total Rows: ${Object.keys(userData).length}</p>`;
+
+            // Append the table and total row to the page
+            document.body.appendChild(table);
+            document.body.appendChild(totalRow);
+        }
+    });
+</script>
+
+</body>
+</html>
